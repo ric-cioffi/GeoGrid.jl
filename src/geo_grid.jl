@@ -74,9 +74,7 @@ function complete_grid!(grid, n)
     end
 end
 
-# function _gen_grid(x_min, x_max, denser::Val{i}; n, α) where {i}
-#     DomainError(denser, "keywork argument 'denser' can only take values in {:min, :mid, :max, :both}") |> throw
-# end
+
 function _gen_grid(x_min, x_max, denser::Val{:min}; n, α)
     grid = gen_half_grid(n - 1, α)
     grid = x_max*2*grid + x_min*(1 .- 2*grid)
