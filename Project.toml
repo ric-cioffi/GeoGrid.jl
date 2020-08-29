@@ -1,0 +1,4 @@
+name = "GeoGrid"
+uuid = "e4e6a524-9055-48df-8098-3b6d53ef2de2"
+authors = ["Riccardo Cioffi <ric.cioffi90@gmail.com>"]
+version = "0.1.0"
