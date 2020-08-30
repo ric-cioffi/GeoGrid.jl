@@ -1,4 +1,4 @@
-using Lazy
+using Lazy, MappedArrays, ResumableFunctions
 
 # TODO: (1) Try to make recursive
 
@@ -27,4 +27,15 @@ end
 function lazy_half_grid_mapped(n::Int, α)
     base = 0.5*(α - 1)/(α^(n - 1) - 1)
     mappedarray(x -> x == 0 ? 0.0 : base*sum(α^(j - 1) for j = 1:x), 0:(n - 1))
+end
+
+@resumable function lazy_half_grid_resumable(n::Int, α)::Float64
+    base = 0.5*(α - 1)/(α^(n - 1) - 1)
+
+    prev = 0.0
+    cur = base
+    for i in 1:n
+        @yield prev
+        prev, cur = cur, base + α*cur
+    end
 end
