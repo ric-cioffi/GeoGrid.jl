@@ -56,12 +56,11 @@ end
 
 function gen_half_grid(n::Int, α)
     grid = [0.0]
-    baseline = 0.5*(α - 1)/(α^n - 1)
+    baseline = 0.5*(α - 1)/(α^(n - 1) - 1)
     for k = 1:(n - 1)
         x = baseline + α*grid[end]
         push!(grid, x)
     end
-    push!(grid, 0.5)
 return grid
 end
 function complete_grid!(grid, n)
@@ -76,21 +75,21 @@ end
 
 
 function _gen_grid(x_min, x_max, denser::Val{:min}; n, α)
-    grid = gen_half_grid(n - 1, α)
+    grid = gen_half_grid(n, α)
     grid = x_max*2*grid + x_min*(1 .- 2*grid)
 end
 function _gen_grid(x_min, x_max, denser::Val{:max}; n, α)
-    grid = gen_half_grid(n - 1, α)
+    grid = gen_half_grid(n, α)
     grid = reverse(0.5 .- grid, dims = 1)
     grid = x_max*2*grid + x_min*(1 .- 2*grid)
 end
 function _gen_grid(x_min, x_max, denser::Val{:both}; n, α)
-    grid = gen_half_grid(div(n, 2), α)
+    grid = gen_half_grid(div(n, 2) + 1, α)
     complete_grid!(grid, n)
     grid = x_max*grid + x_min*(1 .- grid)                                       # rescale grid
 end
 function _gen_grid(x_min, x_max, denser::Val{:mid}; n, α)
-    grid = gen_half_grid(div(n, 2), α)
+    grid = gen_half_grid(div(n, 2) + 1, α)
     grid = 0.5 .- reverse(grid, dims = 1)
     complete_grid!(grid, n)
     grid = x_max*grid + x_min*(1 .- grid)                                       # rescale grid
