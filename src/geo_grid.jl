@@ -55,11 +55,11 @@ function geo_grid(start, stop; length::Int, factor = 1 + log(length)/(length + l
 end
 
 function gen_half_grid(n::Int, α)
-    grid = [0.0]
-    baseline = 0.5*(α - 1)/(α^(n - 1) - 1)
+    base = 0.5*(α - 1)/(α^(n - 1) - 1)
+    grid = Vector{Float64}(undef, n)
+    grid[1] = 0.0
     for k = 1:(n - 1)
-        x = baseline + α*grid[end]
-        push!(grid, x)
+        grid[k + 1] = base + α*grid[k]
     end
 return grid
 end
