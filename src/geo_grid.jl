@@ -57,8 +57,8 @@ end
 function gen_half_grid(n::Int, α)
     base = 0.5*(α - 1)/(α^(n - 1) - 1)
     grid = Vector{Float64}(undef, n)
-    grid[1] = 0.0
-    for k = 1:(n - 1)
+    grid[1], grid[n] = 0.0, 0.5
+    for k = 1:(n - 2)
         grid[k + 1] = base + α*grid[k]
     end
 return grid
