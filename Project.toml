@@ -2,8 +2,3 @@ name = "GeoGrid"
 uuid = "e4e6a524-9055-48df-8098-3b6d53ef2de2"
 authors = ["Riccardo Cioffi <ric.cioffi90@gmail.com>"]
 version = "0.1.0"
-
-[deps]
-Lazy = "50d2b5c4-7a5e-59d5-8109-a42b560f39c0"
-MappedArrays = "dbb5928d-eab1-5f90-85c2-b9b0edb7c900"
-ResumableFunctions = "c5292f4c-5179-55e1-98c5-05642aab7184"
