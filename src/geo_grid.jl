@@ -1,5 +1,5 @@
 """
-    geo_grid(start, stop; length::Int, α::Float64 = log(length)/(length + log(length)), denser = :min)
+    geo_grid(start, stop; length::Int, factor::Float64 = log(length)/(length + log(length)), denser = :min)
 
 Construct a geometrically-spaced vector from `start` to `stop` of size `length`, with the distance between successive points increasing by a constant `factor`.
 
@@ -13,7 +13,7 @@ The `denser` keyword argument can only take values `:min`, `:mid`, `:max`, `:bot
 
 # Examples
 ```julia-repl
-julia> gen_grid(0, 10; length = 6, denser = :max)
+julia> geo_grid(0, 10; length = 6, denser = :max)
 6-element Array{Float64,1}:
   0.0               
   2.8998369960845483
@@ -22,7 +22,7 @@ julia> gen_grid(0, 10; length = 6, denser = :max)
   8.732885926840664 
  10.0  
 
-julia> v = HACT.gen_grid(0, 1/2; length = 5, factor = 2)
+julia> v = HACT.geo_grid(0, 1/2; length = 5, factor = 2)
 5-element Array{Float64,1}:
  0.0                
  0.03333333333333333
